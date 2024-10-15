@@ -1,0 +1,89 @@
+.institute-list-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #006666;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 80vh; 
+    overflow-y: auto; 
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #006666;
+  }
+  
+  .institute-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .institute-item {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .institute-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .institute-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3498db;
+    margin-right: 10px;
+  }
+  
+  .wallet-address {
+    font-size: 14px;
+    color: #ff8000;
+    word-break: break-word;
+  }
+  
+  .remove-btn {
+    margin-top: 5px;
+    padding: 8px 12px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .remove-btn:hover {
+    background-color: #e60000;
+  }
+
+  
+  @media (max-width: 768px) {
+    .institute-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .remove-btn {
+      margin-top: 10px;
+    }
+  
+    .institute-name, .wallet-address {
+      margin-bottom: 5px;
+    }
+  }
+  

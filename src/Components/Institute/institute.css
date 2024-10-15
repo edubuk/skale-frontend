@@ -1,0 +1,79 @@
+.inst-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+.inst-container>h3
+{
+    color:#1abc9c;
+}
+.container>h3{
+    color: #1abc9c;
+    text-align: center;
+}
+.upload-section
+{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.upload-section>input
+{
+    width: 200px;
+    display: none;
+}
+.upload-section>button
+{
+    padding: 10px 30px;
+    border-radius: 0.2rem;
+    outline: none;
+    border: none;
+    background: #006666;
+    cursor: pointer;
+}
+.upload-section>button:active
+{
+    transform: translateY(4px);
+}
+.upload-section>button:hover
+{
+    background:#006666;
+
+}
+
+.upload-section>a{
+    color: #006666;
+    text-decoration: none;
+    border: 1px solid #5cb85c;
+    padding: 5px 30px;
+    border-radius: 0.2rem;
+}
+.upload-section>a:hover{
+    color: #61dafb;
+}
+.upload-section>p{
+    color:#1abc9c;
+}
+
+.upload-section>label
+{
+    border: 1px dashed #1abc9c;
+    padding: 8px;
+    border-radius: 0.2rem;
+}
+
+@media screen and (max-width:522px) {
+    .upload-section
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+}
+  }

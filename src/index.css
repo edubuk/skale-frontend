@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@property --myColor1 {
+  syntax: '<color>';
+  initial-value: #1abc9c;
+  inherits: false;
+}
+
+@property --myColor2 {
+  syntax: '<color>';
+  initial-value: #3498db;
+  inherits: false;
+}
+button{
+  color:  #ffffff;
+  background: linear-gradient(to right , var(--myColor1), var(--myColor2));
+  transition: --myColor1 0.5s, --myColor2 0.5s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2),
+  0 10px 10px rgba(26, 188, 156, 0.2); 
+}
+button:hover{
+  --myColor1:#1687a0;
+  --myColor2: #2946b9;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 
+  0 10px 10px rgba(26, 188, 156, 0.2); 
+}
+
+button:active {
+  transform: translateY(4px); 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 
+              0 7px 10px rgba(26, 188, 156, 0.2);
+}
+
+.btn-1, .btn-2, .btn-3
+{
+  background: linear-gradient(to right, #1687a0, #2946b9);
+  
+}
+
+span{
+  color:#e67e22;
+}
+/* all input field style */

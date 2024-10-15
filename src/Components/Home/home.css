@@ -1,0 +1,210 @@
+/* Main container for the homepage layout */
+.home-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 5%;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  /* Hero image container */
+  .home-image-container {
+    flex: 1;
+  }
+  
+  .home-hero-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  /* Content section for text and button */
+  .home-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+  
+  .home-introduction {
+    font-size: 36px;
+    color: #006666;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    animation: typing 1s steps(12, end), blink 0.5s step-end infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #16a085; /* Cursor effect */
+    width: 13ch;
+  }
+  
+  .home-title {
+    font-size: 48px;
+    background: linear-gradient(to right, #006666, #ff8000, #3498db);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 10px 0;
+    animation: colorPulse 2s infinite;
+  }
+  
+  .home-description p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #34495e;
+    margin-top: 20px;
+    animation: slideIn 2s ease-out;
+  }
+  
+  /* Button container and button styling */
+  .home-button-container {
+    margin-top: 40px;
+  }
+  
+  .home-issue-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 20px;
+    background-color: #16a085;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .home-issue-button:hover {
+    background-color: #1abc9c;
+    transform: translateY(-5px);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 13ch;
+    }
+  }
+  
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes colorPulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+  
+  /* Responsive design */
+  @media (max-width: 900px) {
+    .home-wrapper {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+      padding: 30px 5%;
+    }
+
+    .home-content {
+        padding-top: 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+
+    .home-introduction, .home-title {
+      font-size: 28px;
+    }
+  
+    .home-description p {
+      font-size: 16px;
+    }
+  
+    .home-issue-button {
+      margin-top: 30px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .home-hero-image {
+      max-width: 300px;
+    }
+  
+    .home-introduction {
+      font-size: 24px;
+      text-align: center;
+      align-items: center;
+    }
+  
+    .home-title {
+      font-size: 36px;
+    }
+  
+    .home-description p {
+      font-size: 14px;
+    }
+    .home-content {
+        padding-top: 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+  
+    .home-issue-button {
+        margin-top: 0;
+      padding: 12px 20px;
+      font-size: 18px;
+    }
+  }
+  

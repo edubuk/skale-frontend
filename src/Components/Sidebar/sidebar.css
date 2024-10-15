@@ -1,0 +1,74 @@
+/* Styles for sidebar */
+
+  /* .sidebar {
+    position: fixed;
+    top: 0;
+    align-items: flex-start;
+    left: -250px; 
+    width: 250px;
+    height: 100%;
+    background-color:#FFFFFF;
+    padding-top: 60px;
+    transition: left 0.3s ease; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2),
+  0 10px 10px rgba(26, 188, 156, 0.2); 
+    z-index: 999;
+  } */
+
+  .sidebar{
+    position: fixed;
+    padding: 0;
+    top: 0;
+    left: -240px;
+    width: 220px;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 10px;
+    row-gap: 20px;
+    background-color: #FFFFFF;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2),
+  0 10px 10px rgba(26, 188, 156, 0.2); 
+  transition: left 0.3s ease;
+  z-index: 5;
+  }
+
+  .sidebar>img{
+    width: 50px;
+    height: 50px;
+  }
+
+  .sidebar-link-section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  .side-link{
+    width: 60px;
+    text-align: start;
+    padding: 5px 20px;
+    border: 1px solid #006666;
+    border-radius: 0.2rem;
+  }
+
+  .side-link>a{
+    text-decoration: none;
+    color:#006666
+  }
+  .side-link>a:hover{
+    text-decoration: none;
+    color:#1abc9c;
+  }
+  
+  .sidebar.open {
+    left: 0; /* Slide in */
+  }
+  
+  
+  
+  
+  
