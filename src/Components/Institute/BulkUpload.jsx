@@ -34,7 +34,7 @@ const BulkUpload = () => {
     const fileData = await file.async("arraybuffer");
     const wordArray = CryptoJS.lib.WordArray.create(fileData);
     const hash = CryptoJS.SHA256(wordArray).toString();
-    setFileHash(hash);
+    setFileHash((prevHash)=>[...prevHash,hash]);
     console.log("hash : ", hash);
   };
 
@@ -149,6 +149,7 @@ const BulkUpload = () => {
     if (certData?.length !== uri.length)
       return toast.error("Data count in zip file and csv file mismatch");
     for (let i = 0; i < uri.length; i++) {
+      console.log("file hash :",fileHash[i])
       data.push({
         studentname: certData[i].studentName,
         studentAdd: certData[i].studentAdd,
@@ -158,7 +159,6 @@ const BulkUpload = () => {
         _witness: account,
       });
     }
-
     try {
       setLoading(true);
       const contract = await connectingWithContract();

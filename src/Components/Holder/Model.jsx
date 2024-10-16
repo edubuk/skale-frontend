@@ -5,6 +5,7 @@ import { CiCircleRemove } from "react-icons/ci";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
 import { EdubukContexts } from "../../Context/EdubukContext";
+const baseUrl= "https://edubuk-skale-server.vercel.app";
 
 const Model = ({ setOpenModal, currUri, isShareBtn }) => {
   const [isDataFetched, setDataFetching] = useState(false);
@@ -32,7 +33,7 @@ const Model = ({ setOpenModal, currUri, isShareBtn }) => {
     const templateParams = {
       receiver_name: receiverName,
       student_name: studentName,
-      doc_link: `https://edubuk-solana-radar-server.vercel.app/api/v1/getResponse/${userId}`,
+      doc_link: `${baseUrl}/api/v1/getResponse/${userId}`,
       receiver_email: receiverEmail,
       
     };
@@ -61,7 +62,7 @@ const Model = ({ setOpenModal, currUri, isShareBtn }) => {
     try {
     
       setLoading(true)
-      const url = "https://edubuk-solana-radar-server.vercel.app/api/v1/shareAccess";
+      const url = `${baseUrl}/api/v1/shareAccess`;
       const res = await fetch(url, {
         method: "POST",
         body: JSON.stringify({ "email":receiverEmail, "name":receiverName, "userId":userid, "pinataHash":currUri }),
@@ -86,7 +87,7 @@ const Model = ({ setOpenModal, currUri, isShareBtn }) => {
     try {
       setLoading(true)
       const updatedUserId = generateUnique8DigitNumber();
-      const url = "https://edubuk-solana-radar-server.vercel.app/api/v1/removeAccess";
+      const url = `${baseUrl}/api/v1/removeAccess`;
       const res = await fetch(url, {
         method: "PUT",
         body: JSON.stringify({ email,pinataHash, updatedUserId}),
@@ -111,7 +112,7 @@ const Model = ({ setOpenModal, currUri, isShareBtn }) => {
   const getAccessList = async () => {
     try {
       setDataFetching(true);
-      const url = `https://edubuk-solana-radar-server.vercel.app/api/v1/recordByUri/${currUri}`;
+      const url = `${baseUrl}/api/v1/recordByUri/${currUri}`;
       const res = await fetch(url, {
         method: "GET",
         headers: {

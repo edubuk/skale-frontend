@@ -50,7 +50,7 @@ const Documents = ({studentData}) => {
           </div>
         </div>
         <a
-              href={`https://edubuk-solana-radar-server.vercel.app/api/v1/getDocByUri/${uri}`}
+              href={`https://edubuk-skale-server.vercel.app/api/v1/getDocByUri/${uri}`}
               target="_blank"
               rel="noreferrer"
             >

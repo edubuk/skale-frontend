@@ -190,6 +190,11 @@ const PostCert = () => {
             </a>
           )}
         </div>
+        {fileHash&&
+        <div className="fileHash">
+          <p><strong>FileHash : </strong><span>{fileHash}</span></p>
+        </div>
+        }
         {loading === true ? <SmallLoader /> :<div className="multi-btn"> <button id="register-btn" onClick={regCert}>Register Certificate</button> {isTransaction&&<a href={`https://giant-half-dual-testnet.explorer.testnet.skalenodes.com/address/${account}`} id="solana-explorer" target="_blank" rel="">View Transaction</a>}</div>}
       </form>
     </div>

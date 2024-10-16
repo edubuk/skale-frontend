@@ -6,7 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import Sidebar from '../Sidebar/Sidebar';
 import logo from '../../assets/EdubukLogo.png';
-
+import { connectWallet } from '../../Utils/apiFeature';
 const Navbar = () => {
   const { openSidebar, setOpenSidebar, account } = useContext(EdubukContexts);
   const [activeNav, setActiveNav] = useState("Home");
@@ -74,9 +74,14 @@ const Navbar = () => {
             <MdClose className='menu-btn' onClick={() => setOpenSidebar(false)} />
           )}
         </div>
+        {!account&&
+        <button id="register-btn" onClick={connectWallet}>Connect Wallet</button>
+        }
+        {account&&
         <div className='account-info'>
-          <p>Connected With : <span>{account?.slice(0, 12)}...</span></p>
+          <p>Connected With : <span>{account?.substring(0, 6)}...{account?.substring(account.length - 5)}</span></p>
         </div>
+        }
       </div>
       {openSidebar && <Sidebar navData={navData} />}
     </>

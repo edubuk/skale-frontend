@@ -19,6 +19,7 @@ const [values, setValues] = useState({
   certType:"",
   issuerName:"",
   witness:"",
+  fileHash:"",
   uri:"",
   timestamp:"",
 })
@@ -63,6 +64,7 @@ const [values, setValues] = useState({
         timestamp:data[6]?._hex,
         issuerName:data[1],
         witness:data[5],
+        fileHash:data[3],
         uri:data[4]
       })
       }
@@ -110,25 +112,26 @@ const [values, setValues] = useState({
     </div>
     {
     values.studentName&&<div class="id-card-wrapper">
-        <div class="id-card">
-          <div class="profile-row">
-            <div class="dp">
-              <div class="dp-arc-outer"></div>
-              <div class="dp-arc-inner"></div>
+        <div className="id-card">
+          <div className="profile-row">
+            <div className="dp">
+              <div className="dp-arc-outer"></div>
+              <div className="dp-arc-inner"></div>
               <img src={Img} alt="profile" />
             </div>
-            <div class="desc">
+            <div className="desc">
             <div className="profile-header">
               <h1>{values.studentName}</h1> 
               <a
-              href={`https://${process.env.REACT_APP_PINATAGATWAY}/ipfs/${values?.uri}`}
+              href={`https://edubuk-skale-server.vercel.app/api/v1/getDocByUri/${values.uri}`}
               target="_blank"
               rel="noreferrer"
             >View Certificate</a>
             </div>
               <p>Certificate Type : <span>{values.certType}</span></p>
               <p>Issued By : <span>{values.issuerName}</span></p>
-              <p>Issuer Address : <span>{values.witness?.slice(0,15)}...</span> </p>
+              <p>Issuer Address : <span>{values?.witness?.substring(0, 6)}...{values.witness?.substring(values.witness?.length - 5)}</span> </p>
+              <p>File Hash : <span>{values?.fileHash?.substring(0, 8)}...{values.fileHash?.substring(values.fileHash?.length - 8)}</span> </p>
               <p>Issued On : <HexToDateTime hexValue={values.timestamp} /></p>
             </div>
           </div>

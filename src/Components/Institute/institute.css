@@ -67,6 +67,23 @@
     border-radius: 0.2rem;
 }
 
+.fileHash {
+    width: 95%;      
+    max-width: 600px;     
+    padding: 5px;       
+    border: 1px dashed #006666;
+    border-radius: 8px;
+    box-sizing: border-box; 
+  }
+  
+  .fileHash p {
+    font-size: clamp(0.6rem, 2vw, 0.8rem); 
+    line-height: 1.5;    
+    word-wrap: break-word; 
+    text-align: center;     
+    margin: 0;             
+  }
+
 @media screen and (max-width:522px) {
     .upload-section
 {
@@ -76,4 +93,11 @@
     align-items: center;
     row-gap: 20px;
 }
+.fileHash {
+    padding: 0px 3px; 
+  }
+
+  .fileHash p {
+    font-size: 0.9rem; 
+  }
   }
