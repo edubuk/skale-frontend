@@ -21,7 +21,6 @@ const PostCert = () => {
   const [isTransaction, setTransaction] = useState(false);
   const [uploadLoader,setUploadLoader]= useState(false);
   //upload docs to IPFS
-  const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJlZTJkZGEzOS01MmE3LTQ5MzctOTQ0Zi02NTM4ZGEwNjI2YTkiLCJlbWFpbCI6ImF2ZXJtYTQ5Njk2QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxLCJpZCI6IkZSQTEifSx7ImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxLCJpZCI6Ik5ZQzEifV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiI2YWUyOGIwYjhhNzYzNmQ2NzBlOCIsInNjb3BlZEtleVNlY3JldCI6IjJjZDllYjQ3YjYxN2Q1YmRmMzhjMTcxYzAxMThlMjUyMzkwZDIxNDgyM2I3YTVjNmE0MDg0NzkxZWM1ZDhhNDEiLCJleHAiOjE3NTc0MTI3MzJ9.Ae0rqEyXL70qwev4FzKDQ_KoqVDb9jVgHOT8kowU-Go"
   const uploadToIpfs = async (e) => {
     e.preventDefault();
     try {
@@ -37,7 +36,7 @@ const PostCert = () => {
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${jwt}`,
+            Authorization: `Bearer ${process.env.REACT_APP_PINATAJWT}`,
           },
           body: formData,
         }
