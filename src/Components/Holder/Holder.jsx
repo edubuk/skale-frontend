@@ -17,7 +17,7 @@ const Holder = () => {
       const contract = await connectingWithContract();
       const studentData = await contract.getStudentInfo(account);
       if (studentData) {
-        console.log('student data ', studentData[0]);
+        console.log('student data ', studentData[2]);
         setStudentName(studentData[0]);
         setStudentData(studentData);
         setSelectedIssuer(studentData[1]?.[0]); // Set the first issuer as the default selection

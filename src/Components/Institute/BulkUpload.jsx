@@ -159,6 +159,7 @@ const BulkUpload = () => {
         _witness: account,
       });
     }
+    console.log("pushing data",data);
     try {
       setLoading(true);
       const contract = await connectingWithContract();
