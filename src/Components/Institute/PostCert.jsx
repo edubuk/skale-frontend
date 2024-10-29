@@ -16,10 +16,11 @@ const PostCert = () => {
   const [fileHash, setFileHash] = useState(null);
   const [uri, setUri] = useState(null);
   const [values, setValues] = useState(regCertValue);
-  const { connectingWithContract,account,loading,setLoading} = useContext(EdubukContexts);
+  const { connectingWithContract, account, loading, setLoading } = useContext(EdubukContexts);
   const [inputFile, setInputFile] = useState();
   const [isTransaction, setTransaction] = useState(false);
-  const [uploadLoader,setUploadLoader]= useState(false);
+  const [uploadLoader, setUploadLoader] = useState(false);
+  const [isNewRegistration, setNewRegistration] = useState(false);
   //upload docs to IPFS
   const uploadToIpfs = async (e) => {
     e.preventDefault();
@@ -96,6 +97,7 @@ const PostCert = () => {
       setUri(null);
       setInputFile(null);
       setFileHash(null);
+      setNewRegistration(true);
     } catch (error) {
       setLoading(false);
       toast.error("Error in certificate Registration", error);
@@ -194,12 +196,33 @@ const PostCert = () => {
             </a>
           )}
         </div>
-        {fileHash&&
-        <div className="fileHash">
-          <p><strong>FileHash : </strong><span>{fileHash}</span></p>
-        </div>
+        {fileHash &&
+          <div className="fileHash">
+            <p><strong>FileHash : </strong><span>{fileHash}</span></p>
+          </div>
         }
-        {loading === true ? <SmallLoader /> :<div className="multi-btn"> <button id="register-btn" onClick={regCert}>Register Certificate</button> {isTransaction&&<a href={`https://giant-half-dual-testnet.explorer.testnet.skalenodes.com/address/${account}`} id="solana-explorer" target="_blank" rel="">View Transaction</a>}</div>}
+        {loading ? (
+          <SmallLoader />
+        ) : (
+          <div className="multi-btn">
+            <button id="register-btn" onClick={regCert}>
+              {!isNewRegistration ? "Register New Certificate" : "Register Certificate"}
+            </button>
+            {!isTransaction && (
+              <div>
+              <a
+                href={`https://giant-half-dual-testnet.explorer.testnet.skalenodes.com/address/${account}`}
+                id="solana-explorer"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Transaction
+              </a>
+              </div>
+            )}
+          </div>
+        )}
+
       </form>
     </div>
   );

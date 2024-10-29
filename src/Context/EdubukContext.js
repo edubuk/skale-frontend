@@ -19,12 +19,35 @@ export const EdubukProvider = ({children}) => {
         }
     }
 
+    const switchToSkale = async()=>{
+        try {
+          const desiredChainId = "974399131";
+          const hexChainId = `0x${Number(desiredChainId).toString(16)}`;
+          await window.ethereum.request({
+            method:'wallet_switchEthereumChain',
+            params: [{ chainId: hexChainId }],
+          })
+    
+          console.log(`Switched to chain ID: ${desiredChainId}`);
+          
+        } catch (error) {
+          if(error.code===4902 && chainId!==undefined)
+          {
+            toast.error(`chain ID: ${chainId} i.e. SKALE Network is not configured in metamask`)
+          }
+        }
+    }
+
     const getConnectedChainId = async () => {
         if (typeof window.ethereum !== 'undefined') {
           try {
             await window.ethereum.request({ method: 'eth_requestAccounts' });
             const currChainId = await window.ethereum.request({ method: 'eth_chainId' });
             setChainId(parseInt(currChainId, 16));
+            if(parseInt(currChainId, 16)!==undefined && parseInt(currChainId, 16)!==974399131)
+            {
+                switchToSkale();
+            }
         } catch(error) {
           toast.error('something went wrong !')
         }

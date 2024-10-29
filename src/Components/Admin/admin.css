@@ -138,6 +138,7 @@ form>h2{
   }
 
   #solana-explorer{
+    margin-left: 5px;
     padding: 8px 20px;
     font-size: 15px;
     border-radius: 0.3rem;

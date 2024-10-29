@@ -45,24 +45,6 @@ const Navbar = () => {
     setAccount(connectedAccount);
   }
 
-  const switchToSkale = async()=>{
-    try {
-      const desiredChainId = "974399131";
-      const hexChainId = `0x${Number(desiredChainId).toString(16)}`;
-      await window.ethereum.request({
-        method:'wallet_switchEthereumChain',
-        params: [{ chainId: hexChainId }],
-      })
-
-      console.log(`Switched to chain ID: ${desiredChainId}`);
-      
-    } catch (error) {
-      if(error.code===4902 && chainId!==undefined)
-      {
-        toast.error(`chain ID: ${chainId} i.e. SKALE Network is not configured in metamask`)
-      }
-    }
-  }
 
   // Handle window resize
   useEffect(() => {
@@ -105,9 +87,8 @@ const Navbar = () => {
         {!account&&
         <button id="register-btn" onClick={walletConnectHandler}>Connect Wallet</button>
         }
-        {account&&chainId===974399131?
-          <button id="connected-icon" onClick={()=>setShowWalletInfo(!showWalletInfo)}><MdOutlineCheckCircle id='icon'/> <span id='account-num'>{account?.substring(0, 6)}...{account?.substring(account?.length - 5)}</span></button>:
-          <button id="connected-icon" onClick={switchToSkale}><TiFlowSwitch id='icon'/> Switch To SKALE</button>
+        {account&&
+          <button id="connected-icon" onClick={()=>setShowWalletInfo(!showWalletInfo)}><MdOutlineCheckCircle id='icon'/> <span id='account-num'>{account?.substring(0, 6)}...{account?.substring(account?.length - 5)}</span></button>
         }
         {
           showWalletInfo&& <WalletInfo showWalletInfo = {showWalletInfo}/>
