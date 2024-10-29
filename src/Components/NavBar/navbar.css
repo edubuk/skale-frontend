@@ -9,6 +9,35 @@
     
 }
 
+.header-container>button{
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#connected-icon
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+#icon
+{
+    width: 20px;
+    height: 20px;
+    color: rgb(255, 247, 0);
+}
+
+#account-num
+{
+    color: white;
+    font-weight: bold;
+}
+
 .nav-logo{
     display: flex;
     justify-content: space-around;
@@ -38,7 +67,24 @@
   0 10px 10px rgba(26, 188, 156, 0.2);
 }
 
-.account-info>p
+.wallet-button
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10pxx;
+}
+
+#switch
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 5px;
+
+}
+
+.account-info>button
 {
     color:#1abc9c;
     font-weight: bold;

@@ -5,7 +5,7 @@ import SmallLoader from "../SmallLoader/SmallLoader";
 import { EdubukContexts } from "../../Context/EdubukContext";
 import CryptoJS from "crypto-js";
 
-const RegCertValue = {
+const regCertValue = {
   studentName: "",
   studentAdd: "",
   certType: "",
@@ -15,7 +15,7 @@ const RegCertValue = {
 const PostCert = () => {
   const [fileHash, setFileHash] = useState(null);
   const [uri, setUri] = useState(null);
-  const [values, setValues] = useState(RegCertValue);
+  const [values, setValues] = useState(regCertValue);
   const { connectingWithContract,account,loading,setLoading} = useContext(EdubukContexts);
   const [inputFile, setInputFile] = useState();
   const [isTransaction, setTransaction] = useState(false);
@@ -92,7 +92,10 @@ const PostCert = () => {
       setLoading(false);
       toast.success("Certificated Posted successfully");
       setTransaction(true)
-      setValues("");
+      setValues(regCertValue);
+      setUri(null);
+      setInputFile(null);
+      setFileHash(null);
     } catch (error) {
       setLoading(false);
       toast.error("Error in certificate Registration", error);

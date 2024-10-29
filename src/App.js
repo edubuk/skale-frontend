@@ -6,6 +6,7 @@ import { useEffect} from "react";
 import { Toaster } from "react-hot-toast";
 import Verifier from "./Components/Verifier/Verifier";
 import Finder from "./Components/CredentialFinder/Finder";
+import { connectWallet } from "./Utils/apiFeature";
 function App() {
 
   useEffect(() => {
