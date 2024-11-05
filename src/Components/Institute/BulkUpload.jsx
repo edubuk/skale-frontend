@@ -82,6 +82,10 @@ const BulkUpload = () => {
 
   // function to extract pdf from zip file in chunks of 10
   const unZipFiles = async (e) => {
+    if(!csvfile)
+    {
+      return toast.error("No CSV file choosen")
+    }
     if (selectedFile) {
       try {
         setUploadLoader(true);
@@ -125,6 +129,9 @@ const BulkUpload = () => {
         toast.error("Error while unzipping the file");
         console.error("Error while unzipping the file:", err);
       }
+    }else
+    {
+      return toast.error("No Zip file choosen")
     }
   };
 
@@ -141,6 +148,9 @@ const BulkUpload = () => {
           setCertData(result.data);
         },
       });
+    }else
+    {
+      return toast.error("No CSV file choosen")
     }
   };
 
@@ -180,7 +190,7 @@ const BulkUpload = () => {
 
   return (
     <div className="form-container">
-      <form onSubmit={issueMultipleCert}>
+      <form >
         <h2>Issue Multiple Certificate</h2>
         <div className="input-box">
           <input
@@ -190,7 +200,7 @@ const BulkUpload = () => {
             value={issuerName}
             onChange={(e) => setIssuerName(e.target.value)}
           ></input>
-          <label for="name">Issuer Name</label>
+          <label htmlFor="name">Issuer Name</label>
         </div>
         <div className="upload-section">
           {count === 0 ? (
@@ -235,7 +245,7 @@ const BulkUpload = () => {
         ) : (
           <div className="multi-btn">
             {" "}
-            <button id="register-btn">Register Certificate</button>{" "}
+            <button id="register-btn" onClick={issueMultipleCert}>Register Certificate</button>{" "}
             {isTransaction && (
               <a
                 href={`https://giant-half-dual-testnet.explorer.testnet.skalenodes.com/address/${account}`}

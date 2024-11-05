@@ -1,14 +1,16 @@
 import React, { useEffect, useState,useContext} from 'react';
-import { ethers } from 'ethers';
+import {Wallet, ethers } from 'ethers';
 import { MdLogout, MdOutlineContentCopy } from 'react-icons/md';
 import { FaRegCircle } from "react-icons/fa6";
 import './wallet.css'; // Import the CSS file
 import { EdubukContexts } from '../../Context/EdubukContext';
 import toast from 'react-hot-toast';
 import SmallLoader from '../SmallLoader/SmallLoader';
+import Miner from '../SFuelDistribution/Miner';
+import { chain } from '../SFuelDistribution/chain';
+import { SiFueler } from "react-icons/si";
 const WalletInfo = (showWalletInfo) => {
   const { account,setAccount,chainId} = useContext(EdubukContexts);
-
   const [balance,setBalance] = useState(null);
 
   const tokenName = {
@@ -19,15 +21,50 @@ const WalletInfo = (showWalletInfo) => {
     974399131:"SFUEL",
   }
 
+  const requestSFuel = async () => {
+    const id=toast.loading("Balance is low, distributing sFUEL...");
+    try {
+      const provider = new ethers.providers.JsonRpcProvider(
+        'https://testnet.skalenodes.com/v1/giant-half-dual-testnet'
+      );      
+      console.log("provider",provider)
+      const randomWallet = Wallet.createRandom().connect(provider);
+      console.log("walet random",randomWallet)
+      const nonce = await provider.getTransactionCount(randomWallet.address);
+      console.log("nonce ",nonce)
+      const functionSignature = "0x0c11dedd";
+      console.log("functionSignature ",functionSignature)
+      const miner = new Miner();
+      const { gasPrice } = await miner.mineGasForTransaction(nonce, 100_000, randomWallet.address);
+      console.log("gasPrice ",gasPrice)
+      
+      const request = {
+        to: chain?.chainInfo?.testnet.proofOfWork,
+        data: `${functionSignature}000000000000000000000000${account.substring(2)}`,
+        gasLimit: 100_000,
+        gasPrice,
+      };
+      console.log("request data ",request)
+      const response = await randomWallet.sendTransaction(request);
+      console.log("response",response);
+      await provider.waitForTransaction(response?.hash, 1);
+      if(response?.hash)
+      {
+        toast.dismiss(id);
+      }
+    } catch (error) {
+      console.error("Error distributing sFUEL:", error);
+      toast.dismiss(id)
+    } 
+  };
+
   const getAccountBalance = async () => {
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      console.log("account ",account)
       const balance = await provider.getBalance(account);
       const etherBalance = ethers.utils.formatEther(balance); 
-      const roundedBalance = parseFloat(etherBalance).toFixed(4)
+      const roundedBalance = parseFloat(etherBalance).toFixed(6)
       setBalance(roundedBalance);
-      console.log("account balance :",roundedBalance)
     } catch (error) {
       console.error('Error fetching balance:', error);
     }
@@ -52,7 +89,7 @@ const WalletInfo = (showWalletInfo) => {
     }
     else
     {
-      toast.error("Already waller disconnected")
+      toast.error("Already wallet disconnected")
     }
   }
 
@@ -74,6 +111,10 @@ const WalletInfo = (showWalletInfo) => {
             </p>:<div id="balance-loader"><SmallLoader /></div>}
           </div>
           <div className="wallet-utils">
+            <div className='wallet-utils-icon' onClick={requestSFuel}>
+            <SiFueler />
+            <p>Get SFuel</p>
+            </div>
             <div className='wallet-utils-icon' onClick={copyAddress}>
             <MdOutlineContentCopy />
             <p>Copy Address</p>

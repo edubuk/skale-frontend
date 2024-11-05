@@ -46,6 +46,10 @@ const [values, setValues] = useState({
     e.preventDefault();
     //const currAccount = account.toLowerCase();
     try {
+      if(!fileHash)
+      {
+        return toast.error("No file choosen")
+      }
       setLoading(true)
       const contract = await connectingWithContract();
       console.log("contract", contract);

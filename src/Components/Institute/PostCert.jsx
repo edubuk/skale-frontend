@@ -74,9 +74,16 @@ const PostCert = () => {
   };
 
   // upload data on blockchain
-
   const regCert = async (e) => {
     e.preventDefault();
+    if(!values.studentName || !values.studentAdd || !values.certType || !values.issuerName)
+      {
+        return toast.error("Please provide all input values..")
+      }
+      if(!uri)
+      {
+        return toast.error("Please upload the document before registration")
+      }
     try {
       setLoading(true);
       const contract = await connectingWithContract();
@@ -167,7 +174,7 @@ const PostCert = () => {
             value={values.issuerName}
             onChange={onChangeHandler}
           ></input>
-          <label htmlFo="name">Issuer Name</label>
+          <label htmlFor="name">Issuer Name</label>
         </div>
         <div className="upload-section">
           <input
@@ -206,9 +213,9 @@ const PostCert = () => {
         ) : (
           <div className="multi-btn">
             <button id="register-btn" onClick={regCert}>
-              {!isNewRegistration ? "Register New Certificate" : "Register Certificate"}
+              {isNewRegistration ? "Register New Certificate" : "Register Certificate"}
             </button>
-            {!isTransaction && (
+            {isTransaction && (
               <div>
               <a
                 href={`https://giant-half-dual-testnet.explorer.testnet.skalenodes.com/address/${account}`}
