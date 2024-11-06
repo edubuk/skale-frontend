@@ -12,7 +12,7 @@ root.render(
     <App />
     </EdubukProvider>
     </BrowserRouter>
-  </React.StrictMode>
+    </React.StrictMode>
 );
 
 

@@ -95,7 +95,7 @@
   @media screen and (max-width:1075px)  {
     .wallet-container {
       position: absolute;
-      top: 40%;
+      top: 35%;
       left: 50%;
       transform: translate(-50%, -50%); /* Centers the element */
       background-color: #fff;

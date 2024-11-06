@@ -3,17 +3,16 @@ import { EdubukContexts } from '../../Context/EdubukContext';
 import { Link, useLocation } from 'react-router-dom'; // Import useLocation
 import './navbar.css';
 import { GiHamburgerMenu } from "react-icons/gi";
-import { MdClose,MdOutlineCheckCircle } from "react-icons/md";
+import { MdClose, MdOutlineCheckCircle } from "react-icons/md";
 import Sidebar from '../Sidebar/Sidebar';
 import logo from '../../assets/EdubukLogo.png';
 import { connectWallet } from '../../Utils/apiFeature';
 import WalletInfo from '../WalletInfo/WalletInfo';
-import { TiFlowSwitch } from "react-icons/ti";
-import toast from 'react-hot-toast';
+
 const Navbar = () => {
-  const { openSidebar, setOpenSidebar,setAccount, account,chainId } = useContext(EdubukContexts);
+  const { openSidebar, setOpenSidebar, setAccount, account, chainId } = useContext(EdubukContexts);
   const [activeNav, setActiveNav] = useState("Home");
-  const [showWalletInfo , setShowWalletInfo] = useState(false);
+  const [showWalletInfo, setShowWalletInfo] = useState(false);
   const location = useLocation(); // Get the current URL
 
   const [windowDimensions, setWindowDimensions] = useState({
@@ -34,13 +33,13 @@ const Navbar = () => {
   useEffect(() => {
     const currentPath = location.pathname;
     const activeRoute = navData.find((nav) => nav.path === currentPath);
-    
+
     if (activeRoute) {
       setActiveNav(activeRoute.name);
     }
-  }, [location.pathname]); 
+  }, [location.pathname]);
 
-  const walletConnectHandler = async()=>{
+  const walletConnectHandler = async () => {
     const connectedAccount = await connectWallet();
     setAccount(connectedAccount);
   }
@@ -84,14 +83,14 @@ const Navbar = () => {
             <MdClose className='menu-btn' onClick={() => setOpenSidebar(false)} />
           )}
         </div>
-        {!account&&
-        <button id="register-btn" onClick={walletConnectHandler}>Connect Wallet</button>
+        {!account &&
+          <button onClick={walletConnectHandler}>Connect Wallet</button>
         }
-        {account&&
-          <button id="connected-icon" onClick={()=>setShowWalletInfo(!showWalletInfo)}><MdOutlineCheckCircle id='icon'/> <span id='account-num'>{account?.substring(0, 6)}...{account?.substring(account?.length - 5)}</span></button>
+        {account &&
+          <button id="connected-icon" onClick={() => setShowWalletInfo(!showWalletInfo)}><MdOutlineCheckCircle id='icon' /> <span id='account-num'>{account?.substring(0, 6)}...{account?.substring(account?.length - 5)}</span></button>
         }
         {
-          showWalletInfo&& <WalletInfo showWalletInfo = {showWalletInfo}/>
+          showWalletInfo && <WalletInfo showWalletInfo={showWalletInfo} setShowWalletInfo={setShowWalletInfo} />
         }
       </div>
       {openSidebar && <Sidebar navData={navData} />}

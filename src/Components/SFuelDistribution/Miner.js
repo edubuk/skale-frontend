@@ -34,7 +34,7 @@ export default class Miner {
         break;
       }
 
-      if (iterations++ % 1_000 === 0) {
+      if (iterations++ % 1000 === 0) {
         await new Promise((resolve) => setTimeout(resolve, 0));
       }
     }
