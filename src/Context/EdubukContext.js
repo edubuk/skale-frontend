@@ -106,7 +106,6 @@ export const EdubukProvider = ({ children }) => {
         const etherBalance = ethers.utils.formatEther(bal);
         const roundedBalance = parseFloat(etherBalance).toFixed(6)
         setBalance(roundedBalance);
-        toast.success("chal raha")
       }
     } catch (error) {
       console.error('Error fetching balance:', error);
