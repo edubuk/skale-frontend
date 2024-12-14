@@ -18,7 +18,7 @@ const PostCert = () => {
   const [values, setValues] = useState(regCertValue);
   const { connectingWithContract, account, loading, setLoading } = useContext(EdubukContexts);
   const [inputFile, setInputFile] = useState();
-  const [isTransaction, setTransaction] = useState(false);
+  const [txHash, setTxHash] = useState(null);
   const [uploadLoader, setUploadLoader] = useState(false);
   const [isNewRegistration, setNewRegistration] = useState(false);
   //upload docs to IPFS
@@ -97,14 +97,17 @@ const PostCert = () => {
       );
       setLoading(true);
       await registerCert.wait();
+      if(registerCert?.hash)
+      {
       setLoading(false);
       toast.success("Certificated Posted successfully");
-      setTransaction(true)
+      setTxHash(registerCert?.hash);
       setValues(regCertValue);
       setUri(null);
       setInputFile(null);
       setFileHash(null);
       setNewRegistration(true);
+      }
     } catch (error) {
       setLoading(false);
       toast.error("Error in certificate Registration", error);
@@ -215,10 +218,10 @@ const PostCert = () => {
             <button id="register-btn" onClick={regCert}>
               {isNewRegistration ? "Register New Certificate" : "Register Certificate"}
             </button>
-            {isTransaction && (
+            {txHash && (
               <div>
               <a
-                href={`https://giant-half-dual-testnet.explorer.testnet.skalenodes.com/address/${account}`}
+                href={`https://honorable-steel-rasalhague.explorer.mainnet.skalenodes.com/tx/${txHash}`}
                 id="solana-explorer"
                 target="_blank"
                 rel="noopener noreferrer"

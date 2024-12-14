@@ -13,7 +13,7 @@ const InstRegValue = {
 
 const InsReg = () => {
   const [values, setValues] = useState(InstRegValue);
-  const [isTransaction, setTransaction] = useState(false);
+  const [txHash, setTxHash] = useState(null);
   const { account, connectingWithContract} = useContext(EdubukContexts);
   const [loading, setLoading] = useState(false);
 
@@ -40,10 +40,13 @@ const InsReg = () => {
         values.witness
       );
       await registerInst.wait();
+      if(registerInst?.hash)
+      {
       setLoading(false);
       toast.success("Institute Register Successfully");
-      setTransaction(true);
+      setTxHash(registerInst.hash);
       setValues(InstRegValue);
+      }
     } catch (error) {
       setLoading(false);
       toast.error("Something went wrong", error);
@@ -87,7 +90,7 @@ const InsReg = () => {
         ></input>
          <label htmlFor="name">Institute Witness Address</label>
         </div>
-        {loading === true ? <SmallLoader /> :<div className="multi-btn"> <button id="register-btn">Register Institute</button> {isTransaction&&<a href={`https://giant-half-dual-testnet.explorer.testnet.skalenodes.com/address/${account}`} id="solana-explorer" target="_blank" rel="">View Transaction</a>}</div>}
+        {loading === true ? <SmallLoader /> :<div className="multi-btn"> <button id="register-btn">Register Institute</button> {txHash&&<a href={`https://honorable-steel-rasalhague.explorer.mainnet.skalenodes.com/tx/${txHash}`} id="solana-explorer" target="_blank" rel="">View Transaction</a>}</div>}
       </form>
     </div> 
   );

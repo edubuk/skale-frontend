@@ -26,7 +26,7 @@ export const EdubukProvider = ({ children }) => {
 
   const switchToSkale = async () => {
     try {
-      const desiredChainId = "974399131";
+      const desiredChainId = "1564830818";
       const hexChainId = `0x${Number(desiredChainId).toString(16)}`;
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
@@ -48,7 +48,7 @@ export const EdubukProvider = ({ children }) => {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         const currChainId = await window.ethereum.request({ method: 'eth_chainId' });
         setChainId(parseInt(currChainId, 16));
-        if (parseInt(currChainId, 16) !== undefined && parseInt(currChainId, 16) !== 974399131) {
+        if (parseInt(currChainId, 16) !== undefined && parseInt(currChainId, 16) !== 1564830818) {
           switchToSkale();
         }
       } catch (error) {
@@ -64,7 +64,7 @@ export const EdubukProvider = ({ children }) => {
     const id = toast.loading("Balance is low, distributing sFUEL...");
     try {
       const provider = new ethers.providers.JsonRpcProvider(
-        'https://testnet.skalenodes.com/v1/giant-half-dual-testnet'
+        process.env.REACT_APP_CalypsoMainnetRPC
       );
       const randomWallet = Wallet.createRandom().connect(provider);
       const nonce = await provider.getTransactionCount(randomWallet.address);
@@ -84,7 +84,7 @@ export const EdubukProvider = ({ children }) => {
       await provider.waitForTransaction(response?.hash, 1);
       if (response?.hash) {
         toast.dismiss(id);
-        toast.success("1 sFUEL credited successfully")
+        toast.success("0.005 sFUEL credited successfully")
       }
     } catch (error) {
       console.error("Error in distributing sFUEL:", error);
@@ -100,7 +100,7 @@ export const EdubukProvider = ({ children }) => {
       const etherBalance = ethers.utils.formatEther(bal);
       const roundedBalance = parseFloat(etherBalance).toFixed(6)
       setBalance(roundedBalance);
-      if (roundedBalance < 0.00000001 && chainId === 974399131) {
+      if (roundedBalance < 0.00000001 && chainId === 1564830818) {
         await requestSFuel();
         const bal = await provider.getBalance(account);
         const etherBalance = ethers.utils.formatEther(bal);

@@ -15,6 +15,7 @@ const WalletInfo = ({ showWalletInfo, setShowWalletInfo }) => {
     50: "XDC",
     56: "BNB",
     974399131: "SFUEL",
+    1564830818:"SFUEL"
   }
 
   const copyAddress = async () => {

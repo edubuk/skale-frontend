@@ -15,7 +15,7 @@ const BulkUpload = () => {
   const [certData, setCertData] = useState([null]);
   const { account, connectingWithContract, loading, setLoading } =
     useContext(EdubukContexts);
-  const [isTransaction, setTransaction] = useState(false);
+  const [txHash, setTxHash] = useState(null);
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
   const [csvfile, setCSVFile] = useState();
@@ -176,11 +176,14 @@ const BulkUpload = () => {
       // console.log("contract", contract);
       const registerBulkCert = await contract.bulkUpload(data, issuerName);
       await registerBulkCert.wait();
+      if(registerBulkCert?.hash)
+      {
+      setTxHash(registerBulkCert.hash)
       setLoading(false);
       toast.success("Certificated Posted successfully");
-      setTransaction(true);
       setIssuerName("");
       setCount(0);
+      }
     } catch (error) {
       setLoading(false);
       toast.error("Error in certificate Registration", error);
@@ -246,9 +249,9 @@ const BulkUpload = () => {
           <div className="multi-btn">
             {" "}
             <button id="register-btn" onClick={issueMultipleCert}>Register Certificate</button>{" "}
-            {isTransaction && (
+            {txHash && (
               <a
-                href={`https://giant-half-dual-testnet.explorer.testnet.skalenodes.com/address/${account}`}
+                href={`https://honorable-steel-rasalhague.explorer.mainnet.skalenodes.com/tx/${txHash}`}
                 id="solana-explorer"
                 target="_blank"
                 rel=""

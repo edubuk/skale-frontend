@@ -71,10 +71,10 @@
     display: inline-block;
     padding: 15px 30px;
     font-size: 20px;
-    background-color: #16a085;
+    border-radius: 30px;
+    background: linear-gradient(to right, #1687a0, #3029b9);
     color: #fff;
     text-transform: uppercase;
-    border-radius: 8px;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease;
   }
@@ -170,6 +170,7 @@
   
     .home-issue-button {
       margin-top: 30px;
+      border-radius: 50%;
     }
   }
   
@@ -202,8 +203,9 @@
       }
   
     .home-issue-button {
-        margin-top: 0;
+      margin-top: 0;
       padding: 12px 20px;
+      border-radius: 50%;
       font-size: 18px;
     }
   }
