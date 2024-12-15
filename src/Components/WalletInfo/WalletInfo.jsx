@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useContext } from 'react';
 import { Wallet, ethers } from 'ethers';
-import { MdLogout, MdOutlineContentCopy } from 'react-icons/md';
+import { MdClose, MdLogout, MdOutlineContentCopy } from 'react-icons/md';
 import { FaRegCircle } from "react-icons/fa6";
 import './wallet.css';
 import { EdubukContexts } from '../../Context/EdubukContext';
@@ -46,7 +46,10 @@ const WalletInfo = ({ showWalletInfo, setShowWalletInfo }) => {
       <div className={`wallet-container ${showWalletInfo ? 'active' : ''}`}>
         <div className="wallet-box">
           <div className='wallet-acc-info'>
+          <div className="account-header">
             <h3><FaRegCircle id='circle' /> <span>{account?.substring(0, 6)}...{account?.substring(account.length - 5)}</span></h3>
+            <MdClose onClick={()=>setShowWalletInfo(false)}/>
+            </div>
             {balance ? <p>
               <strong>Balance: <span>{balance} {tokenName[chainId]}</span></strong>
             </p> : <div id="balance-loader"><SmallLoader /></div>}

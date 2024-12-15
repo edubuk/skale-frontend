@@ -81,6 +81,14 @@
     display: block;
   }
 
+  .account-header
+  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
   #circle
   {
     background: linear-gradient(180deg, yellow, #2946b9);
