@@ -5,7 +5,7 @@ import './navbar.css';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose, MdOutlineCheckCircle } from "react-icons/md";
 import Sidebar from '../Sidebar/Sidebar';
-import logo from '../../assets/EdubukLogo.png';
+import logo from '../../assets/newlogo.jpg';
 import { connectWallet } from '../../Utils/apiFeature';
 import WalletInfo from '../WalletInfo/WalletInfo';
 

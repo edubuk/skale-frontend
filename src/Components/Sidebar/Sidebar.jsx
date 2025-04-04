@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './sidebar.css';
 import { EdubukContexts } from '../../Context/EdubukContext';
-import logo from '../../assets/EdubukLogo.png'
+import logo from '../../assets/newlogo.jpg'
 const Sidebar = ({navData}) => {
   const {openSidebar, setOpenSidebar} = useContext(EdubukContexts);
 
