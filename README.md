@@ -1,1 +1,1 @@
-#Edubuk-Skale-Eseal
+#Edubuk-Skale
