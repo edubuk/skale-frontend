@@ -55,7 +55,7 @@ export const EdubukProvider = ({ children }) => {
         toast.error('something went wrong !')
       }
     } else {
-      toast.error("Metamask is not installed");
+      // toast.error("Metamask is not installed");
     }
   };
 

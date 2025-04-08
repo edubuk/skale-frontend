@@ -6,7 +6,11 @@ const {ethereum} = window;
 export const connectWallet = async()=>{
     try {
         if(!ethereum)
-            return alert("Please add Metamask extenstion in your browser");
+        {
+            // return alert("Please add Metamask extenstion in your browser");
+        console.log("please add Metamask extenstion in your browser");
+        return
+       }
         else
         {
             const accounts = await ethereum.request({
