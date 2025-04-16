@@ -6,7 +6,8 @@ import CryptoJS from "crypto-js";
 import { EdubukContexts } from "../../Context/EdubukContext";
 import HexToDateTime from "./HexToTime";
 import SmallLoader from "../SmallLoader/SmallLoader";
-
+import { EdubukConAdd,EdubukConABI} from '../../Context/constant';
+import { ethers } from "ethers";
 
 const Verifier = () => {
   const [fileHash, setFileHash] = useState(null);
@@ -24,6 +25,30 @@ const [values, setValues] = useState({
   timestamp:"",
 })
   //generate hash of a file
+
+  const EdubukConABI = [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_hash",
+          "type": "string"
+        }
+      ],
+      "name": "viewCertificateData",
+      "outputs": [
+        { "internalType": "string", "name": "", "type": "string" },
+        { "internalType": "string", "name": "", "type": "string" },
+        { "internalType": "string", "name": "", "type": "string" },
+        { "internalType": "string", "name": "", "type": "string" },
+        { "internalType": "string", "name": "", "type": "string" },
+        { "internalType": "address", "name": "", "type": "address" },
+        { "internalType": "uint256", "name": "", "type": "uint256" }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
 
   const getHash = (file)=>{
     const reader = new FileReader();
@@ -51,7 +76,11 @@ const [values, setValues] = useState({
         return toast.error("No file choosen")
       }
       setLoading(true)
-      const contract = await connectingWithContract();
+      const RPC_URL = "https://mainnet.skalenodes.com/v1/honorable-steel-rasalhague";
+      //const EdubukConAdd = "0xfcF386Fb19631248177c90A0e09060E0A2d6157a";
+      const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
+      const contract = new ethers.Contract(EdubukConAdd, EdubukConABI, provider);
+      //const contract = await connectingWithContract();
       console.log("contract", contract);
       const data = await contract.viewCertificateData(fileHash);
       setLoading(true);
